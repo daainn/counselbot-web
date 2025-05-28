@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import DogProfileForm
 from .models import DogProfile
-from user.utils import get_or_create_user  # 네가 만든 헬퍼 함수라고 가정
+from user.utils import get_or_create_user  
 
 def dog_info_submit(request):
     if request.method == "POST":
