@@ -93,15 +93,12 @@ body {
     color: #b4b4b4;
     font-weight: 400;
 }
-
 .guest-link {
     font-size: 13px;
     color: #b4b4b4;
     text-decoration: none;
-    display: inline-block;
-    text-align: right;
+    display: inline;  /* 또는 inline-block */
     margin-top: 8px;
-    width: 100%;
 }
 
 .button-row {
