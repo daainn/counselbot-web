@@ -56,7 +56,7 @@
 .chat-active-indicator {
   width: 6px;
   height: 6px;
-  background-color: #0555F7;
+  background-color: #FFC508;
   border-radius: 50%;
   margin-left: auto;
   display: none;
@@ -158,5 +158,5 @@
 }
 
 .guest-login-btn:hover {
-  background-color: #0555f7;
+  background-color: #FFC508;
 }

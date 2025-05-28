@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #F5F9FF;
+  background-color: #FFFFDB;
   font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
 
@@ -172,7 +172,7 @@
 
 /* 보내기 버튼 */
 .send-btn {
-  background-color: #0555F7;
+  background-color: #FFC508;
   border: none;
   width: 42px;
   height: 42px;

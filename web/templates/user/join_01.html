@@ -3,11 +3,11 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>회원 가입 | LawQuick</title>
+  <title>회원 가입 | PetMind</title>
   <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/common.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/lawquick-join.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/petmind-join.css' %}" />
 </head>
 <body>
   {% include 'common/header.html' %}
@@ -55,14 +55,14 @@
 
       <!-- 개인정보 입력 -->
       <div class="input-area">
-        <div class="section-title">개인정보입력 <span style="color:#0555F7; font-size:18px;">(*필수항목)</span></div>
+        <div class="section-title">개인정보입력 <span style="color:#FFC508; font-size:18px;">(*필수항목)</span></div>
 
         <div class="input-group email-group">
-          <label for="email_id" id="email-label">이메일<span style="color:#0555F7;">*</span></label>
+          <label for="email_id" id="email-label">이메일<span style="color:#FFC508;">*</span></label>
           <div class="email-combined" id="email-combined">
             <input type="text" name="email_id" id="email_id" placeholder="이메일 입력" />
             <span class="at">@</span>
-            <input type="text" name="email_domain" id="email_domain" placeholder="lawquick.com" />
+            <input type="text" name="email_domain" id="email_domain" placeholder="petmind.com" />
             <select id="domain_selector">
               <option value="">직접 입력</option>
               <option value="naver.com">naver.com</option>
@@ -76,7 +76,7 @@
         <p class="helper-text error-message" id="email-error"></p>
 
         <div class="password-group">
-          <label for="password" id="password-label">비밀번호<span style="color:#0555F7;">*</span></label>
+          <label for="password" id="password-label">비밀번호<span style="color:#FFC508;">*</span></label>
           <div class="password-group-wrapper">
             <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요">
             <div class="password-error-icon" id="password-error-icon" style="display: none;"></div>

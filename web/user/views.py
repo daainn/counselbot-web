@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .services.auth_service import authenticate_user
 from .repositories.user_repository import user_exists_by_email, get_user_by_email
-from .forms import UserInfoForm
 from .models import User
 import uuid
 from django.contrib.auth import authenticate, login
@@ -74,43 +73,6 @@ def get_or_create_user(request):
     user = User.objects.create(email=temp_email, password="guest_password")
     return user, False
 
-def info_submit(request):
-    if request.method == "POST":
-        user, _ = get_or_create_user(request)
-
-        is_guest = request.session.get('guest', False)
-
-        post_data = request.POST.copy()
-        post_data['marital_skipped'] = post_data.get('marriage_skip_btn') == 'on'
-        post_data['children_skipped'] = post_data.get('children_skip_btn') == 'on'
-        post_data['other_skipped'] = post_data.get('other_skip_btn') == 'on'
-        post_data['detail_skipped'] = post_data.get('detail_skip_btn') == 'on'
-
-        if 'child_status' in post_data:
-            post_data['has_children'] = post_data.get('child_status') == 'yes'
-
-        form = UserInfoForm(post_data)
-
-        if form.is_valid():
-            if is_guest:
-                # 게스트일 경우: 저장하지 않고 세션에만 저장
-                request.session['guest_info'] = form.cleaned_data
-                return redirect("chat:main")
-            else:
-                # 회원일 경우: DB에 저장
-                user_info = form.save(commit=False)
-                user_info.user = user
-                user_info.save()
-                return redirect("chat:main")
-
-        for field, errors in form.errors.items():
-            for error in errors:
-                messages.warning(request, f"{error}")
-
-        return render(request, "user/info.html", {"form": form})
-
-    return render(request, "user/info.html", {"form": UserInfoForm()})
-
 
 def info_cancel(request):
     messages.info(request, "입력이 취소되었습니다.")
@@ -145,7 +107,7 @@ def join_user_email_form(request):
         request.session['user_password'] = password
         request.session['auth_code'] = auth_code
 
-        subject = "[LawQuick] 이메일 인증번호 안내"
+        subject = "[PetMind] 이메일 인증번호 안내"
         from_email = settings.DEFAULT_FROM_EMAIL
         to_email = [full_email]
         verification_link = "http://localhost:8080/join/email/certification"

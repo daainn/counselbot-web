@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #f5f9ff;
+  background-color: #FFFFDB;
   font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
 
@@ -75,7 +75,7 @@ body {
   font-size: 16px;
   font-weight: 300;
   color: #fff;
-  background-color: #0555F7;
+  background-color: #FFC508;
   border: none;
   border-radius: 10px;
   cursor: pointer;

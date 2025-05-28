@@ -1,7 +1,7 @@
 /* 헤더 전체 레이아웃 */
 .header {
   width: 100%;
-  background-color: #f5f9ff;
+  background-color: #FFFFF6;
   border-bottom: 1px solid #e0e0e0;
   padding: 16px 32px;
   box-sizing: border-box;
@@ -16,10 +16,10 @@
 
 /* 로고 스타일 */
 .logo {
-  font-family: 'Koh Santepheap', cursive;
+  font-family: 'Leckerli One', cursive;
   font-size: 25px;
   font-weight: bold;
-  color: #01143F;
+  color: #F7AE05;
   letter-spacing: -0.05em;
   text-decoration: none;
 }

@@ -1,27 +1,52 @@
 from django.db import models
+from dogs.models import DogProfile
 from user.models import User
 
-# 채팅
+
 class Chat(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    chat_title = models.TextField(blank=True, null=True)
+    dog = models.ForeignKey(DogProfile, on_delete=models.CASCADE)
+    chat_title = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Chat by {self.user.email}"
+        return self.chat_title or f"Chat {self.id}"
 
 
-# 메시지
 class Message(models.Model):
-    SENDER_CHOICES = (
-        ('user', 'User'),
-        ('bot', 'Bot'),
-    )
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
-    sender = models.CharField(max_length=10, choices=SENDER_CHOICES)
+    sender = models.CharField(max_length=10, choices=[('user', 'user'), ('bot', 'bot')])
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    duration = models.FloatField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.sender} message at {self.created_at}"
+        return f"{self.sender}: {self.message[:20]}"
+
+
+class Content(models.Model):
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    image_url = models.URLField(max_length=255, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    reference_url = models.URLField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class ContentRecommendation(models.Model):
+    content = models.ForeignKey(Content, on_delete=models.CASCADE)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('content', 'chat')
+
+
+class UserReview(models.Model):
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
+    review_score = models.IntegerField()
+    review = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"리뷰 {self.review_score}점 - {self.chat_id}"

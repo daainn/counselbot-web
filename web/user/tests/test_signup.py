@@ -71,11 +71,11 @@ def test_email_certification_success_creates_user(client):
     # ✅ 인증번호가 일치하면 User가 생성되고 세션 초기화됨
     session = client.session
     session["auth_code"] = "54321"
-    session["user_email"] = "final@law.com"
+    session["user_email"] = "final@pet.com"
     session["user_password"] = "Secure123!"
     session.save()
 
     response = client.post(reverse("user:join_03"), {"auth_code": "54321"})
     assert response.status_code == 302
-    assert User.objects.filter(email="final@law.com").exists()
+    assert User.objects.filter(email="final@pet.com").exists()
     assert "user_email" not in client.session

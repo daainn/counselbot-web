@@ -1,6 +1,6 @@
 body {
   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-  background-color: #f5f9ff;
+  background-color: #FFFFDB;
   margin: 0;
   padding: 0;
 }
@@ -41,7 +41,7 @@ body {
 }
 
 .progress-bar div.active {
-  background: #0555F7;
+  background: #FFC508;
 }
 
 .section-title {
@@ -86,11 +86,11 @@ body {
   width: 22px;
   height: 22px;
   cursor: pointer;
-  accent-color: #0555F7;
+  accent-color: #FFC508;
 }
 
 .checkbox-label b {
-  color: #0555F7;
+  color: #FFC508;
 }
 
 .view-btn {
@@ -273,7 +273,7 @@ body {
 }
 
 .btn-confirm {
-  background-color: #0555f7;
+  background-color: #FFC508;
   color: white;
 }
 
@@ -375,7 +375,7 @@ select.error {
   padding: 18px;
   font-size: 18px;
   font-weight: 600;
-  background-color: #0555F7;
+  background-color: #FFC508;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -440,7 +440,7 @@ select.error {
 
 .join-auth-form .btn-submit {
   width: 100%;
-  background-color: #0555F7;
+  background-color: #FFC508;
   color: white;
   font-size: 18px;
   padding: 16px;
@@ -521,7 +521,7 @@ select.error {
 }
 
 .btn-join-next {
-  background-color: #0555F7;
+  background-color: #FFC508;
   color: white;
 }
 

@@ -6,9 +6,9 @@ services:
     container_name: mysql-db
     restart: always
     environment:
-      MYSQL_DATABASE: lawquick_db
-      MYSQL_USER: lawquick
-      MYSQL_PASSWORD: lawquick_password
+      MYSQL_DATABASE: petmind_db
+      MYSQL_USER: petmind
+      MYSQL_PASSWORD: petmind_password
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
@@ -23,7 +23,7 @@ services:
 
   web:
     build: .
-    container_name: lawquick-web
+    container_name: petmind-web
     restart: always
     command: python manage.py runserver 0.0.0.0:8000
     volumes:

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django import forms
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
-from .models import User, UserInfo
+from .models import User
 
 # 사용자 정의 회원가입 폼
 class UserCreationForm(forms.ModelForm):
@@ -54,6 +54,3 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['email']
     ordering = ['-created_at']
 
-@admin.register(UserInfo)
-class UserInfoAdmin(admin.ModelAdmin):
-    list_display = ['user', 'created_at']
