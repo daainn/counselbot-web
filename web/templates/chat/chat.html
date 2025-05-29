@@ -23,31 +23,43 @@
     <!-- 사이드바 -->
     {% include 'common/sidebar.html' %}
 
+    <!-- 사이드바 -->
+    {% include 'common/right-sidebar.html' %}
+
     <!-- 채팅 본문 -->
     <main class="chat-main">
+
       <div class="chat-empty">
-        <h2 class="chat-title">어떤 점이 고민이신가요?</h2>
+
+        <h2 class="chat-title">반려견의 문제가 무엇인가요?</h2>
         <form method="POST" action="{% url 'chat:chat_send' %}" class="chat-input-form">
           {% csrf_token %}
           <textarea name="message" placeholder="질문을 입력하세요." required></textarea>
+
           <div class="chat-input-bottom">
+
             <div class="info-btn-wrapper">
-              <a href="{% url 'user:info' %}" class="info-btn">의뢰인 개인정보 입력</a>
+              <a href="{% url 'user:info' %}" class="info-btn">이미지로 질문하기</a>
               <div class="tooltip-container">
                 <span class="tooltip-trigger">?</span>
                 <div class="tooltip-message">
-                  귀하의 상황에 맞는 맞춤형 법률 상담을 위해 각자 정보를 입력해 주세요.<br>
-                  입력하신 정보는 오직 상담 목적에만 활용되며, 철저한 보안 시스템 하에 관리됩니다.
+                  집에 가야하는데..
                 </div>
               </div>
             </div>
+
             <button type="submit" class="send-btn">
               <img src="{% static 'images/chatbot_sendbtn.png' %}" alt="보내기">
             </button>
+
           </div>
+
         </form>
+
+
       </div>
     </main>
+
 
   </div>
 

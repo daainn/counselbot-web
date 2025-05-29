@@ -46,6 +46,7 @@
     {% else %}
       <p class="guest-info-message">상담 기록이 없습니다.</p>
     {% endif %}
+  
   {% else %}
     <div class="guest-info-message">
       <p>
@@ -56,24 +57,45 @@
     </div>
   {% endif %}
 
+
+
   <div class="sidebar-settings">
 
-      <img src="{% static 'images/settings.png' %}" class="chat-user-icon" id="chatUserIcon" alt="비회원 아이콘">
-      
-      <div class="chat-dropdown-menu" id="chatDropdownMenu">
-        {% if is_guest %}
-          <a href="{% url 'user:home' %}">의견 보내기</a>
-          <a href="{% url 'user:home' %}">로그인</a>
-        {% else %}
-          <p class="chat-user-email">{{ user_email }}</p>
-          <a href="{% url 'user:info' %}">회원정보 수정</a>
-          <a href="{% url 'user:home' %}">의견 보내기</a>
-          <a href="{% url 'user:logout' %}">로그아웃</a>
-        {% endif %}
-      </div>
+    <img src="{% static 'images/settings.png' %}" class="sidebar-user-icon" id="sidebarUserIcon" alt="유저 아이콘">
+
+    <div class="chat-dropdown-menu" id="sidebarDropdownMenu">
+      {% if is_guest %}
+        <a href="{% url 'user:home' %}">의견 보내기</a>
+        <a href="{% url 'user:home' %}">로그인</a>
+      {% else %}
+        <p class="chat-user-email">{{ user_email }}</p>
+        <a href="{% url 'user:info' %}">회원정보 수정</a>
+        <a href="{% url 'user:home' %}">의견 보내기</a>
+        <a href="{% url 'user:logout' %}">로그아웃</a>
+      {% endif %}
     </div>
   </div>
 </div>
 
+
+</div>
+
 <!-- 아이콘용 FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const icon = document.getElementById('chatUserIcon');
+    const menu = document.getElementById('chatDropdownMenu');
+
+    icon.addEventListener('click', function (e) {
+      e.stopPropagation();
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // 외부 클릭 시 드롭다운 닫기
+    document.addEventListener('click', function () {
+      menu.style.display = 'none';
+    });
+  });
+</script>

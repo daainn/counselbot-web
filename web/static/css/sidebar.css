@@ -12,6 +12,47 @@
   transition: transform 0.3s ease;
 }
 
+.sidebar-settings {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: fixed;     /* 전체 레이아웃에서 왼쪽 하단 고정 */
+  bottom: 25px;        /* 화면 하단에서 여백 */
+  left: 25px;
+  z-index: 1000;
+}
+
+.sidebar-user-icon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+/* 재사용: chat-header.css에서 이미 정의됨 */
+.chat-dropdown-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute; /* 화면 기준으로 고정 위치 설정 */
+  left: 0px;       /* 좌측에서 거리 조정 (아이콘 기준) */
+  top: 45px;     /* 아이콘보다 위쪽에 떠 있도록 조정 */
+
+  background-color: #FFFFDB;
+  border: 1px solid #9e9e9e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+  font-size: 14px;
+  width: 220px;
+  z-index: 1001;
+  padding: 0;
+}
+
+.chat-dropdown-menu.show {
+  display: flex;
+}
+
+
 .sidebar.active {
   transform: translateX(0);
 }

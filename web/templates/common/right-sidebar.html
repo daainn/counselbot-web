@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>PetMind - 반려견 프로필 사이드바</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #fffdf5;
+    }
+
+    /* 오른쪽 사이드바 전체 */
+    .pet-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background-color: #fffce7;
+      border-left: 1px solid #e0e0e0;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    /* 선택된 반려견 정보 */
+    .selected-pet {
+      background-color: #fff6c1;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .pet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .pet-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pet-profile-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid #ddd;
+    }
+
+    .pet-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .pet-tag {
+      background-color: white;
+      border: 1px solid #ffd95a;
+      color: #333;
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* 반려견 리스트 */
+    .pet-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pet-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .pet-item.active {
+      background-color: #fff6c1;
+      font-weight: bold;
+    }
+
+    .pet-thumbnail {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+
+    .add-pet {
+      margin-top: 12px;
+    }
+
+    .add-pet-btn {
+      width: 100%;
+      background-color: #ffe066;
+      border: none;
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .add-pet-btn:hover {
+      background-color: #ffd633;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 오른쪽 사이드바 -->
+  <div class="pet-sidebar">
+    <!-- 선택된 반려견 정보 -->
+    <div class="selected-pet">
+      <div class="pet-header">
+        <span>🐾 {{ dog.name }} ({{dog.age}}세, {{dog.breed_name}})</span>
+        <button class="edit-btn">✏️</button>
+      </div>
+      <div class="pet-profile">
+        <img src="https://via.placeholder.com/80" alt="프로필" class="pet-profile-img">
+        <div class="pet-tags">
+            <span class="pet-tag">{{ dog.gender }}</span>
+            <span class="pet-tag">{{ dog.neutered }}</span>
+            <span class="pet-tag">{{ dog.disease_history }}</span>
+            <span class="pet-tag">{{ dog.living_period }}</span>
+            <span class="pet-tag">{{ dog.housing_type }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 반려견 목록 -->
+    <div class="pet-list">
+      <div class="pet-item active">
+        <img src="https://via.placeholder.com/36" alt="마루" class="pet-thumbnail">
+        <span>마루 (5세, 비글)</span>
+      </div>
+      <div class="pet-item">
+        <img src="https://via.placeholder.com/36" alt="모카" class="pet-thumbnail">
+        <span>모카 (3세, 푸들)</span>
+      </div>
+      <div class="add-pet">
+        <button class="add-pet-btn">＋ 새 반려견 추가하기</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

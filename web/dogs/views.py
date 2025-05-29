@@ -29,3 +29,13 @@ def dog_info_submit(request):
         form = DogProfileForm()
 
     return render(request, "dogs/info.html", {"form": form})
+
+
+# dogs/views.py
+
+# @login_required
+def right_sidebar_view(request):
+    user = request.user
+    dog_profiles = DogProfile.objects.filter(user=user)
+    return render(request, 'components/right-sidebar.html', {'dog_profiles': dog_profiles})
+

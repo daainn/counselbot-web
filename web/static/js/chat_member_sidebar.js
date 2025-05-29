@@ -146,3 +146,30 @@ function getCSRFToken() {
   const cookie = document.cookie.split(";").find((c) => c.trim().startsWith(name + "="));
   return cookie ? cookie.trim().split("=")[1] : "";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 기존 헤더 드롭다운
+  const userIconBtn = document.getElementById("chatUserIcon");
+  const userDropdown = document.getElementById("chatDropdownMenu");
+
+  userIconBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    userDropdown?.classList.toggle("show");
+  });
+
+  // 새로운 사이드바 드롭다운
+  const sidebarIconBtn = document.getElementById("sidebarUserIcon");
+  const sidebarDropdown = document.getElementById("sidebarDropdownMenu");
+
+  sidebarIconBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    sidebarDropdown?.classList.toggle("show");
+  });
+
+  // 공통: 바깥 클릭 시 닫기
+  document.addEventListener("click", () => {
+    userDropdown?.classList.remove("show");
+    sidebarDropdown?.classList.remove("show");
+  });
+});
+
