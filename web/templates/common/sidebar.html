@@ -1,4 +1,7 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/modal_feedback.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/pretendard.css">
+
 
 <!-- 사이드바 -->
 <div class="sidebar" id="sidebar">
@@ -47,7 +50,7 @@
       <p class="guest-info-message">상담 기록이 없습니다.</p>
     {% endif %}
   
-  {% else %}
+    {% else %}
     <div class="guest-info-message">
       <p>
         아직 회원이 아니신가요?<br>회원가입 후 로그인하시면<br>이전 채팅 기록을 다시 조회할 수 있어요
@@ -55,27 +58,28 @@
       <a href="{% url 'user:join_01' %}" class="guest-login-btn">회원가입 하기</a>
       <a href="{% url 'user:home' %}" class="guest-login-btn">로그인 하기</a>
     </div>
-  {% endif %}
+    {% endif %}
 
 
 
-  <div class="sidebar-settings">
+      <div class="sidebar-settings">
 
-    <img src="{% static 'images/settings.png' %}" class="sidebar-user-icon" id="sidebarUserIcon" alt="유저 아이콘">
+      <img src="{% static 'images/settings.png' %}" class="sidebar-user-icon" id="sidebarUserIcon" alt="유저 아이콘">
 
-    <div class="chat-dropdown-menu" id="sidebarDropdownMenu">
-      {% if is_guest %}
-        <a href="{% url 'user:home' %}">의견 보내기</a>
-        <a href="{% url 'user:home' %}">로그인</a>
-      {% else %}
-        <p class="chat-user-email">{{ user_email }}</p>
-        <a href="{% url 'user:info' %}">회원정보 수정</a>
-        <a href="{% url 'user:home' %}">의견 보내기</a>
-        <a href="{% url 'user:logout' %}">로그아웃</a>
-      {% endif %}
+      <div class="chat-dropdown-menu" id="sidebarDropdownMenu">
+        {% if is_guest %}
+          <a href="#" class="open-modal" data-url="{% url 'user:modal_feedback' %}">의견 보내기</a>
+          <a href="{% url 'user:home' %}">로그인</a>
+        {% else %}
+          <p class="chat-user-email">{{ user_email }}</p>
+          <a href="#" class="open-modal" data-url="{% url 'user:modal_update' %}">회원정보 수정</a>
+          <a href="#" class="open-modal" data-url="{% url 'user:modal_feedback' %}">의견 보내기</a>
+          <a href="{% url 'user:logout' %}">로그아웃</a>
+        {% endif %}
+      </div>
     </div>
+
   </div>
-</div>
 
 
 </div>
@@ -98,4 +102,35 @@
       menu.style.display = 'none';
     });
   });
-</script>
+
+    
+  </script>
+  <!-- 공통 스크립트 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.open-modal').click(function(e) {
+      e.preventDefault();
+      const url = $(this).data('url');
+
+      $.get(url, function(data) {
+        $('#modalContent').html(data);
+        $('#dynamicModal').fadeIn();
+      });
+    });
+
+    $(document).on('click', '.modal-close', function() {
+      $('#dynamicModal').fadeOut();
+      $('#modalContent').html('');
+    });
+
+    $(document).mouseup(function(e) {
+      const content = $(".modal-content-box");
+      if (!content.is(e.target) && content.has(e.target).length === 0) {
+        $('#dynamicModal').fadeOut();
+        $('#modalContent').html('');
+      }
+    });
+  });
+  </script>
+

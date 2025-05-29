@@ -183,3 +183,9 @@ def join_terms_service(request):
 
 def join_user_complete(request):
     return render(request, 'user/join_04.html')
+
+def modal_update(request):
+    return render(request, 'user/modal_update.html')
+
+def modal_feedback(request):
+    return render(request, 'user/modal_feedback.html')

@@ -37,5 +37,8 @@ def dog_info_submit(request):
 def right_sidebar_view(request):
     user = request.user
     dog_profiles = DogProfile.objects.filter(user=user)
-    return render(request, 'components/right-sidebar.html', {'dog_profiles': dog_profiles})
-
+    return render(request, 'common/right-sidebar.html', 
+                  {'dog': dog_profiles.first(),
+                   'dog_profiles': dog_profiles
+                   }
+                   )

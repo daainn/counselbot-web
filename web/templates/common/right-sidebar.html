@@ -123,7 +123,7 @@
   </style>
 </head>
 <body>
-
+{% if not is_guest %}
   <!-- 오른쪽 사이드바 -->
   <div class="pet-sidebar">
     <!-- 선택된 반려견 정보 -->
@@ -146,19 +146,17 @@
 
     <!-- 반려견 목록 -->
     <div class="pet-list">
-      <div class="pet-item active">
-        <img src="https://via.placeholder.com/36" alt="마루" class="pet-thumbnail">
-        <span>마루 (5세, 비글)</span>
-      </div>
-      <div class="pet-item">
-        <img src="https://via.placeholder.com/36" alt="모카" class="pet-thumbnail">
-        <span>모카 (3세, 푸들)</span>
-      </div>
+      {% for dog in dog_profiles %}
+      <div class="pet-item {% if forloop.first %}active{% endif %}">
+      <img src="https://via.placeholder.com/36" alt="{{ dog.name }}" class="pet-thumbnail">
+      <span>{{ dog.name }} ({{ dog.age }}세, {{ dog.breed_name }})</span>
+    </div>
+    {% endfor %}
       <div class="add-pet">
         <button class="add-pet-btn">＋ 새 반려견 추가하기</button>
       </div>
     </div>
   </div>
-
+{% endif %}
 </body>
 </html>

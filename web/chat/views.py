@@ -70,6 +70,7 @@ def chat_member_start(request, chat_id):
     try:
         user = User.objects.get(id=user_id)
         chat = Chat.objects.get(id=chat_id, dog__user=user)
+        
     except (User.DoesNotExist, Chat.DoesNotExist):
         return redirect('chat:main')
 

@@ -22,4 +22,7 @@ urlpatterns = [
     path('join/email/certification', views.join_user_email_certification, name='join_03'),
     path('join/complete/', views.join_user_complete, name='join_04'), 
 
+    path('modal/update/', views.modal_update, name='modal_update'),
+    path('modal/feedback/', views.modal_feedback, name='modal_feedback'),
+
 ]
