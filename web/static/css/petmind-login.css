@@ -101,6 +101,10 @@ body {
     margin-top: 8px;
 }
 
+.guest-link:hover {
+    color: #888888;       
+    font-weight: 500;        
+}
 .button-row {
     display: flex;
     margin: 20px 0 10px;
@@ -121,6 +125,10 @@ body {
     border: none;
     padding: 0;
     height: 100%;
+}
+
+.btn-login:hover {
+    background-color: #e6b700; 
 }
 
 .btn-join {
@@ -146,6 +154,10 @@ body {
     margin-top: 15px;
     display: block;
     text-decoration: none;
+}
+
+.find-password:hover {
+    color: #888888;
 }
 
 @media (max-width: 768px) {

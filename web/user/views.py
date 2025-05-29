@@ -24,7 +24,7 @@ def home(request):
             messages.error(request, '입력한 이메일 주소를 찾을 수 없습니다.')
         elif not check_password(password, user.password):
             messages.error(request, '비밀번호가 올바르지 않습니다.')
-        else:
+        else: 
             request.session.flush()
             request.session['user_id'] = str(user.id)
             request.session['user_email'] = user.email
@@ -64,7 +64,7 @@ def find_password_complete(request):
 def info(request):
     if request.method == 'POST':
         return redirect('user:info')
-    return render(request, 'user/info.html')
+    return render(request, 'dogs/info.html')
 
 def get_or_create_user(request):
     if request.user.is_authenticated:
