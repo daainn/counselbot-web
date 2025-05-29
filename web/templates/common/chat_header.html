@@ -4,6 +4,8 @@
   <!-- ✅ 폰트 CDN -->
   <link href="https://cdn.jsdelivr.net/npm/spoqa-han-sans@2.1.2/css/SpoqaHanSans.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+
 
   <div class="chat-header-inner">
     <!-- 사이드바 토글 버튼 -->
@@ -24,11 +26,11 @@
 
       <div class="chat-dropdown-menu" id="chatDropdownMenu">
         {% if is_guest %}
-          <a href="{% url 'user:info' %}">의뢰인 개인정보 입력</a>
+          <a href="{% url 'user:info' %}">반려견 정보 입력</a>
           <a href="{% url 'user:home' %}">로그인</a>
         {% else %}
           <p class="chat-user-email">{{ user_email }}</p>
-          <a href="{% url 'user:info' %}">의뢰인 개인정보 수정</a>
+          <a href="{% url 'user:info' %}">반려견 정보 수정</a>
           <a href="{% url 'user:logout' %}">로그아웃</a>
         {% endif %}
       </div>
