@@ -40,5 +40,8 @@ class DogProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'dogs_dogprofile'
+
     def __str__(self):
         return self.name

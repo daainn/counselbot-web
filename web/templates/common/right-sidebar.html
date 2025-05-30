@@ -123,23 +123,40 @@
   </style>
 </head>
 <body>
+{% load static %}
 {% if not is_guest %}
+
   <!-- 오른쪽 사이드바 -->
   <div class="pet-sidebar">
     <!-- 선택된 반려견 정보 -->
     <div class="selected-pet">
       <div class="pet-header">
         <span>🐾 {{ dog.name }} ({{dog.age}}세, {{dog.breed_name}})</span>
-        <button class="edit-btn">✏️</button>
+
+        <a href="" class="edit-btn">
+          <img src="{% static 'images/new-chat.png' %}" alt="프로필 수정" style="width: 23px; height: 23px;">
+        </a>
       </div>
+
       <div class="pet-profile">
-        <img src="https://via.placeholder.com/80" alt="프로필" class="pet-profile-img">
+        <img src={{ dog.profile_image_url }} alt="프로필" class="pet-profile-img">
         <div class="pet-tags">
+          {% if dog.gender %}
             <span class="pet-tag">{{ dog.gender }}</span>
+          {% endif %}
+          {% if dog.neutered %}
             <span class="pet-tag">{{ dog.neutered }}</span>
+          {% endif %}
+          {% if dog.disease_history %}
             <span class="pet-tag">{{ dog.disease_history }}</span>
+          {% endif %}
+          {% if dog.living_period %}
             <span class="pet-tag">{{ dog.living_period }}</span>
+          {% endif %}
+          {% if dog.housing_type %}
             <span class="pet-tag">{{ dog.housing_type }}</span>
+          {% endif %}
+
         </div>
       </div>
     </div>
@@ -148,7 +165,7 @@
     <div class="pet-list">
       {% for dog in dog_profiles %}
       <div class="pet-item {% if forloop.first %}active{% endif %}">
-      <img src="https://via.placeholder.com/36" alt="{{ dog.name }}" class="pet-thumbnail">
+      <img src="{{ dog.profile_image_url }}" alt="{{ dog.name }}" class="pet-thumbnail">
       <span>{{ dog.name }} ({{ dog.age }}세, {{ dog.breed_name }})</span>
     </div>
     {% endfor %}

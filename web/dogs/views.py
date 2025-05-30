@@ -34,11 +34,15 @@ def dog_info_submit(request):
 # dogs/views.py
 
 # @login_required
-def right_sidebar_view(request):
-    user = request.user
-    dog_profiles = DogProfile.objects.filter(user=user)
-    return render(request, 'common/right-sidebar.html', 
-                  {'dog': dog_profiles.first(),
-                   'dog_profiles': dog_profiles
-                   }
-                   )
+from django.shortcuts import render
+from .models import DogProfile  
+
+def dog_profile_view(request):
+    # dog 프로필을 가져오는 예시 (필요한 필드를 포함)
+    dog_profiles = DogProfile.objects.all() 
+    selected_dog = dog_profiles.first()  # 선택된 첫 번째 강아지를 예시로
+
+    return render(request, 'common/right-sidebar.html', {
+        'dog_profiles': dog_profiles,
+        'dog': selected_dog,
+    })

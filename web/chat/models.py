@@ -50,3 +50,4 @@ class UserReview(models.Model):
 
     def __str__(self):
         return f"리뷰 {self.review_score}점 - {self.chat_id}"
+

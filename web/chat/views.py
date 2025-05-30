@@ -5,6 +5,7 @@ from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from user.models import User
 from .models import Chat, Message
+from .models import UserReview
 from dogs.models import DogProfile
 import uuid
 import datetime
@@ -116,23 +117,10 @@ def get_dog_info(user):
             "disease_history": dog.disease_history or "없음",
             "living_period": dog.living_period,
             "housing_type": dog.housing_type,
-        }
+        } 
     except DogProfile.DoesNotExist:
         return {}
 
-def call_runpod_api(message, user_info):
-    try:
-        api_url = "https://x76r8kryd0u399-7004.proxy.runpod.net/chat"
-        payload = {
-            "message": message,
-            "user_info": user_info
-        }
-        res = requests.post(api_url, json=payload, timeout=120)
-        res.raise_for_status()
-        data = res.json()
-        return data.get("response", "⚠️ 응답이 없습니다.")
-    except Exception as e:
-        return f"❗ 오류 발생: {str(e)}"
 
 # 채팅 메시지 전송
 @require_POST
@@ -253,4 +241,46 @@ def chat_talk_view(request, chat_id):
         "user_email": user_email,
         "is_guest": is_guest,
         "now_time": now_time,
+    })
+
+# 피드백 제출 처리
+def submit_feedback(request):
+    if request.method == 'POST':
+        rating = request.POST.get('rating')  # 별점
+        review = request.POST.get('review')  # 피드백 텍스트
+
+        if rating:
+            # 피드백을 user_review 테이블에 저장
+            new_review = UserReview(
+                chat_id=1,  # 실제 chat_id는 사용자의 세션 또는 다른 정보를 통해 받아올 수 있음
+                rating=int(rating),
+                review=review,
+                created_at=timezone.now()
+            )
+            new_review.save()
+            return redirect('success_page')  # 성공 페이지로 리다이렉트
+        else:
+            return JsonResponse({'status': 'empty_title'}, status=400)
+        
+        
+from .models import DogProfile  # 실제 모델 이름에 맞게 수정하세요
+'''
+def dog_profile_view(request):
+    # dog 프로필을 가져오는 예시 (필요한 필드를 포함)
+    dog_profiles = DogProfile.objects.all()  # 또는 특정 조건에 맞게 필터링
+    selected_dog = dog_profiles.first()  # 선택된 첫 번째 강아지를 예시로
+
+    return render(request, 'common/right-sidebar.html', {
+        'dog_profiles': dog_profiles,
+        'dog': selected_dog,
+    })
+'''
+def chat_main(request):
+    dog_profiles = DogProfile.objects.all()
+    selected_dog = dog_profiles.first()
+
+    return render(request, 'chat/chat.html', {
+        'dog_profiles': dog_profiles,
+        'dog': selected_dog,
+        'is_guest': False,  # 예시
     })

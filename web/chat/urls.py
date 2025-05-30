@@ -15,4 +15,7 @@ urlpatterns = [
     path('member/delete/<int:chat_id>/', views.chat_member_delete, name='member_chat_delete'),
     path('member/update-title/<int:chat_id>/', views.chat_member_update_title, name='member_chat_update_title'),
     path('member/chat/<int:chat_id>/', views.chat_member_start, name='chat_member_start'),
+    path('submit_feedback/', views.submit_feedback, name='submit_feedback'),
+    path('dog-profile/', views.dog_profile_view, name='dog_profile'),
+
 ]
