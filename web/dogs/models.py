@@ -2,12 +2,12 @@ from django.db import models
 from user.models import User
 
 class DogBreed(models.Model):
-    breed_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)  
     image_url = models.URLField(max_length=255, null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.breed_name
+        return self.name
 
 
 class DogProfile(models.Model):

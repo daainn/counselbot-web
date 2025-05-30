@@ -5,7 +5,7 @@ class DogProfileForm(forms.ModelForm):
     class Meta:
         model = DogProfile
         fields = [
-            'name', 'breed', 'breed_name', 'age', 'gender', 'neutered',
+            'name', 'breed', 'age', 'gender', 'neutered',
             'disease_history', 'living_period', 'housing_type', 'profile_image_url'
         ]
         widgets = {
