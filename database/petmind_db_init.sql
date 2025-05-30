@@ -76,22 +76,31 @@ CREATE TABLE user_review (
     created_at DATETIME
 );
 
-select * from user_user;
-select * from dogs_profile;
+-- db 삭제
+DROP DATABASE petminddb;
+CREATE DATABASE petminddb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-INSERT INTO dogs_profile (
-    dog_id, breed_id, user_id, name, breed_name, age, gender, neutered,
-    medical_history, living_period, residence_type, image_url,
+use petminddb;
+select * from user_user;
+select * from dogs_dogprofile;
+select * from dogs_dogbreed;
+
+INSERT INTO dogs_dogbreed (id, breed_name, image_url, characteristic) values
+(101,'비글','https://dogs.beagle','비글이다'),
+(102,'푸들','https://dogs.poodle','푸들이다');
+
+INSERT INTO dogs_dogprofile (
+    id, breed_id, user_id, name, breed_name, age, gender, neutered,
+    disease_history, living_period, housing_type, profile_image_url,
     created_at, updated_at
 ) VALUES 
 (
-    1, 101, '1ab0831884304da4913417b5d05207e5', '마루', '비글', 5, '남아', '완료',
-    '슬개골 탈구 수술 이력 있음', '3년 이상 ~ 10년 미만', '아파트', 'https://via.placeholder.com/80',
+    1, 101, '21a235c1a8c942ad9b3710bcea3866af', '마루', '비글', 24, '여아', '완료',
+    '슬개골 탈구 수술 이력 있음', '3년 이상 ~ 10년 미만', '아파트', '',
     NOW(), NOW()
 ),
 (
-    2, 102, '1ab0831884304da4913417b5d05207e5', '모카', '푸들', 3, '여아', '미완료',
+    2, 102, '21a235c1a8c942ad9b3710bcea3866af', '모카', '푸들', 3, '남아', '미완료',
     '알러지 있음', '1년 이상 ~ 3년 미만', '빌라/다세대', 'https://via.placeholder.com/80',
     NOW(), NOW()
 );
-
