@@ -124,13 +124,6 @@
       $('#modalContent').html('');
     });
 
-    $(document).mouseup(function(e) {
-      const content = $(".modal-content-box");
-      if (!content.is(e.target) && content.has(e.target).length === 0) {
-        $('#dynamicModal').fadeOut();
-        $('#modalContent').html('');
-      }
-    });
-  });
+   });
   </script>
 

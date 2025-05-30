@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // 모달 열기
   $('.open-modal').click(function (e) {
     e.preventDefault();
     const url = $(this).data('url');
@@ -9,16 +10,17 @@ $(document).ready(function () {
     });
   });
 
+  // 닫기, 취소 버튼 -> 모달 닫기
+
   $(document).on('click', '.modal-close', function () {
     $('#dynamicModal').fadeOut();
     $('#modalContent').html('');
   });
 
-  $(document).mouseup(function (e) {
-    const modal = $(".modal");
-    if (!modal.is(e.target) && modal.has(e.target).length === 0) {
-      $('#dynamicModal').fadeOut();
-      $('#modalContent').html('');
-    }
-  });
+  $(document).on('click', '#modalCancelBtn', function () {
+  $('#dynamicModal').fadeOut();
+  $('#modalContent').html('');
+});
+
+ 
 });
