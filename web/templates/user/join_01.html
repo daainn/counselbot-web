@@ -21,7 +21,7 @@
   </div>
 
   <div class="container">
-    <form method="post" action="{% url 'user:join_02' %}" id="joinForm">
+    <form method="post" action="{% url 'user:join_complete' %}">
       {% csrf_token %}
 
       <!-- 약관 -->
@@ -278,7 +278,7 @@
         return;
       }
 
-      window.location.href = '/dogs/dog_info_join';
+      window.location.href = '/dogs/dog_info/join/';
     });
   });
 </script>

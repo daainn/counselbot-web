@@ -97,8 +97,24 @@ def join_terms_privacy(request):
 def join_terms_service(request):
     return render(request, 'user/join_p_terms_service.html')
 
+
 def join_user_complete(request):
-    return render(request, 'user/join_04.html')
+    email = request.session.get('user_email')
+    password = request.session.get('user_raw_password')
+
+    if not User.objects.filter(email=email).exists():
+        user = User.objects.create(
+            email=email,
+            password=make_password(password),
+            is_verified=True  # 필요시
+        )
+    else:
+        user = User.objects.get(email=email)
+
+    login(request, user)
+    return redirect('dogs:dog_info_join')
+
+
 
 @csrf_exempt 
 def send_auth_code(request):

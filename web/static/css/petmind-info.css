@@ -2,11 +2,10 @@ body {
   width: 100%;
   margin: 0;
   background-color: #FFFFF6;
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
   font-size: 21px;
-  color: #01143F;
+  color: #2B2104;
   text-align: left;
-  letter-spacing: -2px;
+  letter-spacing: 0px;
 }
 
 .top-title {
@@ -103,7 +102,9 @@ body {
   font-weight: 550;
   margin-bottom: 20px;
   color: #2f2f2f;
+  font-family: 'Spoqa Han Sans Neo'
 }
+
 
 .required-star {
   color: #FFC508;
@@ -138,8 +139,8 @@ body {
 }
 
 .image-delete-btn img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 /* 업로드 라벨 */
@@ -168,6 +169,17 @@ body {
   opacity: 0.7;
 }
 
+.uploaded-preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
 .image-upload-label input[type="file"] {
   display: none;
 }
@@ -181,7 +193,6 @@ body {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
 
 .select2-container--default .select2-selection--single {
@@ -190,7 +201,6 @@ body {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
   box-sizing: border-box;
 }
 
@@ -201,37 +211,38 @@ body {
   font-size: 15px;         
   letter-spacing: -0.3px;
   padding-left: 2px;
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
 
 .select2-selection__arrow {
   display: none !important;
 }
-
-
 .inline-input-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .inline-input-row .profile-subtitle {
   min-width: 150px;
-  margin-top: 15px;
   font-size: 24px;
   font-weight: 550;
   color: #2f2f2f;
   white-space: nowrap;
+  margin-top: 10px;
+  margin-right: 80px;
 }
 
-.inline-input-row .input-label {
-  min-width: 120px;
-  font-weight: bold;
-  font-size: 16px;
+.profile-subtitle-disease {
+  min-width: 150px;
+  font-size: 24px;
+  font-weight: 550;
+  color: #2f2f2f;
   white-space: nowrap;
+  margin-top: 10px;
+  margin-right: 35px;
 }
-
 
 .inline-input-row input[type="text"],
 .inline-input-row select {
@@ -240,17 +251,27 @@ body {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
+
+.inline-input-row .radio-row {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between; 
+  flex-wrap: wrap;
+}
+
 
 .radio-row {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  width: 100%; 
+  justify-content: space-between; 
 }
 
 .radio-row label {
-  display: inline-block;
+  flex: 1; 
   padding: 12px 18px;
   border: 1px solid #ccc;
   border-radius: 30px;
@@ -259,7 +280,9 @@ body {
   background-color: #fff;
   transition: 0.2s;
   text-align: center;
+  white-space: nowrap; 
 }
+
 
 .radio-row input[type="radio"] {
   display: none;
@@ -289,4 +312,43 @@ body {
 
 .btn-confirm:hover {
   background-color: #e0a800;
+}
+
+
+.top-title,
+.top-title strong,
+.dog-info-form,
+.form-box,
+.section-block,
+.section,
+.section-title,
+.info-banner,
+.info-banner strong,
+.field-label,
+.profile-title,
+.profile-subtitle,
+.required-star,
+.profile-subtext,
+.image-upload-label,
+.section-content input[type="text"],
+.section-content select,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.inline-input-row,
+.inline-input-row .profile-subtitle,
+.inline-input-row input[type="text"],
+.inline-input-row select,
+.inline-input-row .radio-row,
+.radio-row,
+.radio-row label,
+.radio-row input[type="radio"]:checked + label,
+.button-row,
+.btn-confirm {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 4px;
 }

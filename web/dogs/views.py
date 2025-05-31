@@ -1,51 +1,51 @@
-import pandas as pd
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from .forms import DogProfileForm
 from user.utils import get_or_create_user  
 from dogs.models import DogBreed, DogProfile
-from .forms import DogProfileForm
+from django.conf import settings
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+import os
 
 
 def dog_info_join_view(request):
-    form = DogProfileForm()
-    dog_breeds = DogBreed.objects.all().order_by('name')  
-    return render(request, 'dogs/dog_info_join.html', {
-        'form': form,
-        'dog_breeds': dog_breeds   
-    })
+    user, _ = get_or_create_user(request)
+    if not user:
+        return redirect('user:home')
 
+    dog_breeds = DogBreed.objects.all().order_by('name')
 
-
-def dog_info_submit(request):
     if request.method == "POST":
-        user, _ = get_or_create_user(request)
-        is_guest = request.session.get('guest', False)
-
-        form = DogProfileForm(request.POST)
+        form = DogProfileForm(request.POST, request.FILES)
 
         if form.is_valid():
-            breed_name = request.POST.get('breed_name')
-            breed_obj = DogBreed.objects.filter(breed_name=breed_name).first()
-            if not breed_obj:
-                breed_obj = DogBreed.objects.create(breed_name=breed_name)
+            dog_profile = form.save(commit=False)  
+            dog_profile.user = user 
 
-            if is_guest:
-                request.session['guest_dog_info'] = form.cleaned_data
-                return redirect("chat:main")
+            # 견종 처리
+            breed_id = form.cleaned_data.get('breed').id if form.cleaned_data.get('breed') else None
+            breed_obj = DogBreed.objects.filter(id=breed_id).first()
+
+            if not breed_obj:
+                form.add_error('breed', "올바른 견종을 선택해주세요.")
             else:
-                dog_profile = form.save(commit=False)
-                dog_profile.user = user
-                dog_profile.breed = breed_obj  
+                dog_profile.breed = breed_obj
+
+                # 프로필 이미지 저장
+                profile_image = request.FILES.get("profile_image")
+                if profile_image:
+                    path = default_storage.save(f"profile_images/{profile_image.name}", ContentFile(profile_image.read()))
+                    dog_profile.profile_image_url = os.path.join(settings.MEDIA_URL, path)
+
                 dog_profile.save()
                 return redirect("chat:main")
         else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.warning(request, f"{error}")
+            print("폼 에러 발생:", form.errors)
+
     else:
         form = DogProfileForm()
 
-    from dogs.models import DogBreed
-    dog_breeds = DogBreed.objects.all()
-    return render(request, "dogs/dog_info_join.html", {"form": form, "dog_breeds": dog_breeds})
+    return render(request, "dogs/dog_info_join.html", {
+        "form": form,
+        "dog_breeds": dog_breeds,
+    })
