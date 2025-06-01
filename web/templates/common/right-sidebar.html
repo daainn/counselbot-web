@@ -124,6 +124,7 @@
 </head>
 <body>
 {% load static %}
+
 {% if not is_guest %}
 
   <!-- 오른쪽 사이드바 -->
@@ -134,7 +135,7 @@
         <span>🐾 {{ dog.name }} ({{dog.age}}세, {{dog.breed_name}})</span>
 
         <a href="" class="edit-btn">
-          <img src="{% static 'images/new-chat.png' %}" alt="프로필 수정" style="width: 23px; height: 23px;">
+          <img src="{% static 'images/new-chat.png' %}" alt="프로필 수정 아이콘" style="width: 23px; height: 23px;">
         </a>
       </div>
 
@@ -145,16 +146,18 @@
             <span class="pet-tag">{{ dog.gender }}</span>
           {% endif %}
           {% if dog.neutered %}
-            <span class="pet-tag">{{ dog.neutered }}</span>
+            <span class="pet-tag">중성화 {{ dog.neutered }}</span>
           {% endif %}
-          {% if dog.disease_history %}
+          {% if dog.disease_history == '없음' %}
+            <span class="pet-tag">과거 수술 이력 없음</span>
+          {% else %}
             <span class="pet-tag">{{ dog.disease_history }}</span>
           {% endif %}
           {% if dog.living_period %}
-            <span class="pet-tag">{{ dog.living_period }}</span>
+            <span class="pet-tag">함께 산 지 {{ dog.living_period }}</span>
           {% endif %}
           {% if dog.housing_type %}
-            <span class="pet-tag">{{ dog.housing_type }}</span>
+            <span class="pet-tag">{{ dog.housing_type }} 거주</span>
           {% endif %}
 
         </div>

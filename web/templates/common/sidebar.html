@@ -70,7 +70,7 @@
           <a href="#" class="open-modal" data-url="{% url 'user:modal_feedback' %}">의견 보내기</a>
           <a href="{% url 'user:home' %}">로그인</a>
         {% else %}
-          <p class="chat-user-email">{{ user_email }}</p>
+          <p class="chat-user-email">{{ user_user_email }}</p>
           <a href="#" class="open-modal" data-url="{% url 'user:modal_update' %}">회원정보 수정</a>
           <a href="#" class="open-modal" data-url="{% url 'user:modal_feedback' %}">의견 보내기</a>
           <a href="{% url 'user:logout' %}">로그아웃</a>

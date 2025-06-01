@@ -41,7 +41,7 @@ class DogProfile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = 'dogs_dogprofile'
+        db_table = 'dogs_profile'
 
     def __str__(self):
         return self.name
