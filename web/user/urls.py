@@ -6,12 +6,13 @@ app_name = 'user'
 urlpatterns = [
     path('', views.home, name='home'),
     path('password/', views.find_password, name='find_password'),
-    path('password/complete/', views.find_password_complete, name='find_password_complete'),
-    path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
+    path('login/', views.home, name='login'),
+    path('update/', views.update_info, name='update_info'),
+    path('feedback/', views.user_feedback, name='user_feedback'),
+    path('withdraw/', views.withdraw_user, name='withdraw'),
+    path('submit-feedback/', views.submit_feedback, name='submit_feedback'),
 
     path('logout/', views.logout_view, name='logout'),
-
-    path('chat/guest/', views.chat_guest_view, name='chat_guest'),
 
     path('info/', views.info, name='info'),
     path('info/cancel', views.info_cancel, name='info_cancel'), 
